@@ -18,7 +18,11 @@ class Recinto {
             "GAZELA": 2,
             "HIPOPOTAMO": 4,
         }
-        return this.tamanho - (tamanhos[animal] * qtd);
+        if(this.animais.length != 0) {
+            return this.tamanho - (tamanhos[animal] * qtd) - (tamanhos[this.animais[0].especie] * this.animais[0].qtd) ;
+        } else {
+            return this.tamanho - (tamanhos[animal] * qtd);
+        }
     }
 }
 

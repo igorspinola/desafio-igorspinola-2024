@@ -1,8 +1,12 @@
 import recintos from "./Recinto.js";
-//console.log(recintos[0].nome())
 class RecintosZoo {
 
     analisaRecintos(animal, quantidade) {
+        if (quantidade <= 0) {
+           return  {
+                    erro: "Quantidade inválida"
+           }
+        }
         const tamanhos = {
             "LEAO": 3,
             "LEOPARDO": 2,
@@ -12,60 +16,112 @@ class RecintosZoo {
             "HIPOPOTAMO": 4,
         }
         const tamanho = tamanhos[animal];
+        const retorno = {
+            recintosViaveis: [],
+        };
         switch (animal) {
             case "LEAO":
-                
-                break;
-            case "LEOPARDO":
-                
-                break;
-            case "CROCODILO":
-                const retorno = {
-                    recintosViaveis: [],
-                };
                 for (let i = 0; i < recintos.length; i++) {
                     const rec = recintos[i];
                     const existente = rec.animais[0];
                     let espacoLivre = rec.tamanhoLivre(animal, quantidade);
-                    if (i == 3) {
-                       console.log(espacoLivre);
-                    }
-                    if (existente != undefined && existente.especie != animal) {
+
+                    if (!rec.bioma.includes("savana")) {
                         continue;
                     }
-                    if(rec.bioma != "rio") {
+                    if (existente != undefined && existente.especie != animal) {
                         continue;
                     }
                     if(espacoLivre < 0) {
                         continue;
                     }
+
                     rec.espacoLivre = espacoLivre;
                     const dados = `${rec.nome()} (espaço livre: ${espacoLivre} total: ${rec.tamanho})`
                     retorno.recintosViaveis.push(dados);
+                }
+                if (retorno.recintosViaveis.length == 0) {
+                    return {
+                            erro: "Não há recinto viável"
+                    }
+                }
+                return retorno;
+                
+                break;
+            case "LEOPARDO":
+                for (let i = 0; i < recintos.length; i++) {
+                    const rec = recintos[i];
+                    const existente = rec.animais[0];
+                    let espacoLivre = rec.tamanhoLivre(animal, quantidade);
+
+                    if (!rec.bioma.includes("savana")) {
+                        continue;
+                    }
+                    if (existente != undefined && existente.especie != animal) {
+                        continue;
+                    }
+                    if(espacoLivre < 0) {
+                        continue;
+                    }
+
+                    rec.espacoLivre = espacoLivre;
+                    const dados = `${rec.nome()} (espaço livre: ${espacoLivre} total: ${rec.tamanho})`
+                    retorno.recintosViaveis.push(dados);
+                }
+                if (retorno.recintosViaveis.length == 0) {
+                    return {
+                            erro: "Não há recinto viável"
+                    }
+                }
+                return retorno;
+                
+                break;
+            case "CROCODILO":
+                for (let i = 0; i < recintos.length; i++) {
+                    const rec = recintos[i];
+                    const existente = rec.animais[0];
+                    let espacoLivre = rec.tamanhoLivre(animal, quantidade);
+
+                    if (!rec.bioma.includes("rio")) {
+                        continue;
+                    }
+                    if (existente != undefined && existente.especie != animal) {
+                        continue;
+                    }
+                    if(espacoLivre < 0) {
+                        continue;
+                    }
+
+                    rec.espacoLivre = espacoLivre;
+                    const dados = `${rec.nome()} (espaço livre: ${espacoLivre} total: ${rec.tamanho})`
+                    retorno.recintosViaveis.push(dados);
+                }
+                if (retorno.recintosViaveis.length == 0) {
+                    return {
+                            erro: "Não há recinto viável"
+                    }
                 }
                 return retorno;
                 
                 break;
             case "MACACO":
-                const retorno = {
-                    recintosViaveis: [],
-                };
                 for (let i = 0; i < recintos.length; i++) {
                     const rec = recintos[i];
                     const existente = rec.animais[0];
                     let espacoLivre = rec.tamanhoLivre(animal, quantidade);
-                    if (i == 3) {
-                       console.log(espacoLivre);
-                    }
-                    if (existente != undefined && existente.especie == "LEAO" || existente.especie == "LEOPARDO" || existente.especie == "CROCODILO") {
+                    if(!rec.bioma.includes("savana") && !rec.bioma.includes("floresta")) {
                         continue;
+                    }
+                    if (existente == undefined && quantidade == 1) {
+                       continue; 
+                    }
+                    if (existente != undefined) {
+                        if (existente.especie == "LEAO" || existente.especie == "LEOPARDO" || existente.especie == "CROCODILO") {
+                            continue;
+                        }
                     }
                     if (existente != undefined && existente.especie != animal) {
                         espacoLivre--; 
-                    }
-                    //console.log(rec);
-                    if(rec.bioma != "rio") {
-                        continue;
                     }
                     if(espacoLivre < 0) {
                         continue;
@@ -74,13 +130,77 @@ class RecintosZoo {
                     const dados = `${rec.nome()} (espaço livre: ${espacoLivre} total: ${rec.tamanho})`
                     retorno.recintosViaveis.push(dados);
                 }
+                if (retorno.recintosViaveis.length == 0) {
+                    return {
+                            erro: "Não há recinto viável"
+                    }
+                }
                 return retorno;
                 
                 break;
             case "GAZELA":
+                for (let i = 0; i < recintos.length; i++) {
+                    const rec = recintos[i];
+                    const existente = rec.animais[0];
+                    let espacoLivre = rec.tamanhoLivre(animal, quantidade);
+                    if(!rec.bioma.includes("savana")) {
+                        continue;
+                    }
+                    if (existente != undefined) {
+                        if (existente.especie == "LEAO" || existente.especie == "LEOPARDO" || existente.especie == "CROCODILO") {
+                            continue;
+                        }
+                    }
+                    if (existente != undefined && existente.especie != animal) {
+                        espacoLivre--; 
+                    }
+                    if(espacoLivre < 0) {
+                        continue;
+                    }
+                    rec.espacoLivre = espacoLivre;
+                    const dados = `${rec.nome()} (espaço livre: ${espacoLivre} total: ${rec.tamanho})`
+                    retorno.recintosViaveis.push(dados);
+                }
+                if (retorno.recintosViaveis.length == 0) {
+                    return {
+                            erro: "Não há recinto viável"
+                    }
+                }
+                return retorno;
                 
                 break;
             case "HIPOPOTAMO":
+                for (let i = 0; i < recintos.length; i++) {
+                    const rec = recintos[i];
+                    const existente = rec.animais[0];
+                    let espacoLivre = rec.tamanhoLivre(animal, quantidade);
+                    if(!rec.bioma.includes("savana") && !rec.bioma.includes("rio")) {
+                        continue;
+                    }
+                    if (existente != undefined) {
+                        if (existente.especie == "LEAO" || existente.especie == "LEOPARDO" || existente.especie == "CROCODILO") {
+                            continue;
+                        }
+                    }
+                    if (existente != undefined && existente.especie != animal) {
+                        espacoLivre--; 
+                    }
+                    if (existente != undefined && existente.especie != animal && !rec.bioma.includes("savana") || !rec.bioma.includes("rio")) {
+                        espacoLivre--; 
+                    }
+                    if(espacoLivre < 0) {
+                        continue;
+                    }
+                    rec.espacoLivre = espacoLivre;
+                    const dados = `${rec.nome()} (espaço livre: ${espacoLivre} total: ${rec.tamanho})`
+                    retorno.recintosViaveis.push(dados);
+                }
+                if (retorno.recintosViaveis.length == 0) {
+                    return {
+                            erro: "Não há recinto viável"
+                    }
+                }
+                return retorno;
                 
                 break;
 
@@ -93,5 +213,5 @@ class RecintosZoo {
     }
 
 }
-//new RecintosZoo().analisaRecintos("CROCODILO", 1);
+new RecintosZoo().analisaRecintos("MACACO", 2);
 export { RecintosZoo as RecintosZoo };
