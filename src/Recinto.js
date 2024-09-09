@@ -4,6 +4,7 @@ class Recinto {
         this.bioma = bioma;
         this.tamanho = tamanho;
         this.animais = animais;
+        this.espacoLivre;
     }
     nome() {
         return `Recinto ${this.numero}`;
