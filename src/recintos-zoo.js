@@ -7,15 +7,6 @@ class RecintosZoo {
                     erro: "Quantidade inválida"
            }
         }
-        const tamanhos = {
-            "LEAO": 3,
-            "LEOPARDO": 2,
-            "CROCODILO": 3,
-            "MACACO": 1, 
-            "GAZELA": 2,
-            "HIPOPOTAMO": 4,
-        }
-        const tamanho = tamanhos[animal];
         const retorno = {
             recintosViaveis: [],
         };
