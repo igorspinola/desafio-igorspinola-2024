@@ -177,7 +177,7 @@ class RecintosZoo {
                         espacoLivre--; 
                     }
                     if (existente != undefined && existente.especie != animal && !rec.bioma.includes("savana") || !rec.bioma.includes("rio")) {
-                        espacoLivre--; 
+                        continue; 
                     }
                     if(espacoLivre < 0) {
                         continue;

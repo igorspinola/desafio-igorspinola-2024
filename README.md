@@ -1,7 +1,9 @@
 # RECINTOS DO ZOO
 
-## COMO BAIXAR O CÓDIGO E SUBMETER MINHA SOLUÇÃO?
-Para completar a etapa do desafio você terá que baixar a estrutura do código aqui na Azure, resolver o desafio usando Javascript e entregá-lo no repositório no seu github.
+## SOBRE MINHA SOLUÇÃO
+Foi um ótimo desafio, para a minha solução eu cobri todos os requisitos para cada animal e garanti que os requisitos específicos funcionavam adicionando mais testes que cobriam todos os "edge cases".
+
+## TEXTO ORIGINAL ABAIXO
 
 ### BAIXANDO A ESTRUTURA
 Para baixar a estrutura no formato zip, basta clicar neste [link](https://dev.azure.com/db-tecnologia/99dbf7ce-dadd-40d3-b827-e1648cb6a262/_apis/git/repositories/877e7dfb-78ea-465e-bd88-9dbf83120933/items?path=/&versionDescriptor%5BversionOptions%5D=0&versionDescriptor%5BversionType%5D=0&versionDescriptor%5Bversion%5D=main&resolveLfs=true&%24format=zip&api-version=5.0&download=true).
