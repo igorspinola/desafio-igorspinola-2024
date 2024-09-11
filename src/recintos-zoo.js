@@ -204,5 +204,4 @@ class RecintosZoo {
     }
 
 }
-new RecintosZoo().analisaRecintos("MACACO", 2);
 export { RecintosZoo as RecintosZoo };
